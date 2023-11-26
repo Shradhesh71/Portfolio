@@ -118,5 +118,50 @@ function showSlidess(n) {
   slides2[slideIndex2].style.display = "block";
 }
 
+// var swiper = new Swiper(".mySwiper", {
+//   slidesPerView: 1,
+//   spaceBetween: 50,
+//   loop: true,
+//   grabCursor: true,
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: true,
+//   },
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+// });
 
+window.onscroll = () => {
+  sections.forEach(sec => {
+      let top = window.scrollY;
+      let offset = sec.offsetTop - 150;
+      let height = sec.offsetHeight;
+      let id = sec.getAttribute('id');
+
+      if(top >= offset && top < offset + height) {
+          navLinks.forEach(links => {
+              links.classList.remove('active');
+              document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+          });
+      };
+  });
+}
+
+
+let TestomonialIndex = 0;
+Testomonialshow();
+
+function Testomonialshow() {
+  let i;
+  let slides = document.getElementsByClassName("testimonial-slide");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  TestomonialIndex++;
+  if (TestomonialIndex > slides.length) {TestomonialIndex = 1}    
+  slides[TestomonialIndex-1].style.display = "block";  
+  setTimeout(Testomonialshow, 2000); // Change image every 2 seconds
+}
  
