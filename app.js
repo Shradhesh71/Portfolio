@@ -7,7 +7,7 @@ const userDetail = require("../my-portfolio/model/user");
 
 
 // connect to mongo database
-mongoose.connect('mongodb+srv://shradesh71:newone71@cluster0.4tegtua.mongodb.net/portfolio?retryWrites=true')
+mongoose.connect(process.env.MONGO_URL)
     .then(()=>{
         console.warn("connect...");
     })
